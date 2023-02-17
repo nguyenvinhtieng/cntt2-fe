@@ -4,7 +4,7 @@ import PostItem from "~/components/PostItem/PostItem";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import PostItemSkeleton from "~/components/PostItemSkeleton/PostItemSkeleton";
-import { fetchPostData, startFilterPost } from "~/redux/actions/postActions";
+import {  startFilterPost } from "~/redux/actions/postActions";
 import { useDispatch } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { FaListUl } from "react-icons/fa";

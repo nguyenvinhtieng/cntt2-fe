@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux'
 import QuestiomItemSkeleton from '~/components/QuestiomItemSkeleton/QuestiomItemSkeleton';
@@ -33,28 +32,7 @@ export default function QuestionPage() {
         </div>
         <ul className="" style={{listStyle: "none"}}>
           {currentItems?.length > 0 &&  currentItems?.map(question => <QuestionItem key={question._id} question={question}></QuestionItem>)}
-          {/* {questions?.data?.length > 0 && 
-          <InfiniteScroll
-            dataLength={questions?.data?.length}
-            next={()=> dispatch(fetchQuestionData({}))}
-            hasMore={questions?.total > questions?.data?.length || false}
-            scrollThreshold={"200px"}
-            className="question__list"
-            loader={<>
-              <QuestiomItemSkeleton /><QuestiomItemSkeleton /><QuestiomItemSkeleton />
-            </>}
-            endMessage={
-              <p className="end-message">
-                Yay! You have seen it all
-              </p>
-            }
-          >
-            {questions?.data?.map((question) => <QuestionItem key={question._id} question={question}></QuestionItem>)}
-          </InfiniteScroll>
-          } */}
-            {/* {questions?.data?.length > 0 && questions?.data?.map((question, _) => <QuestionItem key={question._id} question={question}></QuestionItem>)} */}
-            {questions?.data?.length == 0 && !questions.loading && <div className="question__list--empty">Không có câu hỏi nào</div>}
-            {/* {questions?.data?.length == 0 && questions.loading && new Array(5).fill(null).map((_, index) => <QuestiomItemSkeleton key={index} />)} */}
+            {questions?.data?.length == 0 && !questions.loading && <div className="question__list--empty"><sup>Không có câu hỏi nào</sup> </div>}
         </ul>
         {currentItems?.length > 0 && 
           <ReactPaginate

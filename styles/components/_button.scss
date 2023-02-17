@@ -1,0 +1,25 @@
+.button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #5c9bfa;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  color: #fff;
+  font-family: inherit;
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 2px 10px #5c9bfa;
+  }
+  &__lg {
+    padding: 12px 24px;
+  }
+  &--danger {
+    margin: 0 8px;
+    background-color: rgb(216, 58, 58);
+    &:hover {
+      box-shadow: 0 2px 10px rgb(216, 58, 58);
+    }
+  }
+}

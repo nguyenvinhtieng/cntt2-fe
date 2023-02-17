@@ -1,0 +1,56 @@
+.sidebar {
+  width: 240px;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  border-right: 1px solid $borderColor;
+  overflow-y: auto;
+  transition: all 0.2s linear;
+  z-index: 3;
+  @include tablet {
+    top: 0;
+    background-color: $darkColor;
+    transform: translateX(-100%);
+  }
+  &.is-open {
+    @include tablet {
+      transform: translateX(0);
+    }
+  }
+  &__wrapper {
+    padding: 16px 0;
+  }
+  &__ttl {
+    font-size: 11px;
+    color: #a8b3cfa3;
+    font-weight: bold;
+    padding: 0 12px;
+    margin-top: 18px;
+  }
+  &__menu {
+    margin-top: 6px;
+    &--item {
+      padding: 8px 12px;
+      color: #a8b3cf;
+      &:hover {
+        color: #fff;
+        background-color: $grayColor;
+      }
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+      }
+    }
+    &--icon {
+      width: 24px;
+      font-size: 14px;
+    }
+    &--ttl {
+      flex: 1;
+      font-size: 13px;
+    }
+  }
+}

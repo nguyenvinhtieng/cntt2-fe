@@ -1,0 +1,19 @@
+// .skeleton {
+//     width: 100%;
+//     height: 50px;
+//     background-color: red;
+// }
+
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: $darkColor;
+    }
+
+    100% {
+        background-color: $grayColor;
+    }
+}

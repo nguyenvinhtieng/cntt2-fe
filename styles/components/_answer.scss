@@ -1,0 +1,86 @@
+.answer {
+    &__list {
+
+    }
+    &__thread {
+        margin-bottom: 6px;
+    }
+    &__item {
+        padding-left: 60px;
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+
+    &__actionItemMenu {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s linear;
+        &.is-active {
+            background-color: $grayColor;
+        }
+        &:hover {
+            background-color: $grayColor;
+        }
+    }
+    &__content {
+        background-color: $borderColor;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 4px 0 6px 0;
+        font-size: 12px;
+    }
+    &__content--wrapper {
+        position: relative;
+    }
+    &__confirm {
+        position: absolute;
+        font-size: 24px;
+        top: -3px;
+        right: 2px;
+        color: yellow;
+        cursor: pointer;
+    }
+    &__reject {
+        position: absolute;
+        font-size: 24px;
+        top: -3px;
+        right: 2px;
+        color: red;
+        cursor: pointer;
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    &__actionItem {
+        margin-right: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s linear;
+        padding: 6px 12px;
+        border-radius: 4px;
+        &.is-active {
+            color: rgb(50, 189, 50);
+            background-color: rgba(50, 189, 50, 0.1);
+            // font-weight: bold;
+        }
+        &:hover {
+            background-color: $grayColor;
+            cursor: pointer;
+            // color: green;
+        }
+        &--ttl {
+            font-size: 12px;
+            margin-left: 6px;
+        }
+    }
+}

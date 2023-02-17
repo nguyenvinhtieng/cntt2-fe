@@ -1,0 +1,233 @@
+.input {
+  &__wrapper {
+    width: 100%;
+    margin-bottom: 12px;
+    &--radio {
+      input {
+        display: none;
+      }
+      label {
+        font-size: 12px;
+        padding-left: 16px;
+        position: relative;
+        cursor: pointer;
+        &::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: #eee;
+          box-shadow: 0 0 0 2px #eee;
+          transition: all 0.25s linear;
+          border-radius: 50%;
+        }
+      }
+      input:checked + label {
+        &::before {
+          box-shadow: 0 0 0 3px #fff;
+          background-color: #fd656b;
+        }
+      }
+    }
+    textarea {
+      width: 100%;
+      background-color: $borderColor;
+      border: 1px solid $grayColor;
+      padding: 8px 16px;
+      color: #fff;
+      resize: vertical;
+      border-radius: 4px;
+      transition: border 0.1s linear;
+      font-size: 14px;
+      font-family: inherit;
+      &:focus {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    input[type="text"], input[type="password"], input[type="email"],input[type="date"] {
+      width: 100%;
+      background-color: $borderColor;
+      border: 1px solid $grayColor;
+      padding: 8px 16px;
+      color: #fff;
+      border-radius: 4px;
+      transition: border 0.1s linear;
+      font-size: 14px;
+      font-family: inherit;
+      &:focus {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      -webkit-filter: invert(100%);
+      filter: invert(100%);
+    }
+  }
+  &__label {
+    font-size: 12px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  
+}
+
+
+// input image
+.input-image {
+  &__btn {
+    width: 100%;
+    height: 100px;
+    border: 3px dashed $borderColor;
+    background-color: transparent;
+    color: $grayColor;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    &.is-dragging {
+      background-color: $borderColor;
+      color: #fff;
+    }
+    &:hover {
+      background-color: $borderColor;
+      color: #fff;
+    }
+  }
+  &__btns {
+    display: flex;
+    margin: 0 -5px;
+    margin-top: 6px;
+    button {
+      padding: 6px 16px;
+      margin: 0 5px;
+      font-size: 12px;
+      flex: 1;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s linear;
+      color: $darkColor;
+      &:hover {
+        color: #fff;
+        background-color: $borderColor;
+      }
+    }
+  }
+  &__item {
+    width: 100%;
+    height: 350px;
+    img {
+      width: 100%;
+      height: calc(100% - 35px);
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+}
+
+
+// input file
+.inputFile {
+  &__wrapper {
+    width: 100%;
+  }
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed $grayColor;
+    font-size: 12px;
+    padding: 16px 12px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    span {
+      margin-left: 12px;
+    }
+    &:hover {
+      border-color: $borderColor;
+      color: $borderColor;
+      background-color: $grayColor;
+    }
+    
+  }
+  &__preview {
+    margin-top: 16px;
+    &-item {
+      width: 100%;
+      margin: 16px 0;
+      padding: 8px;
+      background-color: $borderColor;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      &__delete {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: -10px;
+        right: 0;
+        cursor: pointer;
+      }
+      &__icon {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+      }
+      &__wrap {
+        flex: 1;
+        margin-left: 12px;
+      }
+      &__name {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      &__size {
+        font-size: 10px;
+      }
+    }
+  }
+  &__previewChat {
+    display: flex;
+    margin: 0 -6px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    &-item {
+      margin: 0 6px;
+      width: 80px;
+      height: 80px;
+      background-color: rgba(168, 179, 207, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      flex-direction: column;
+      &--delete {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: rgb(250, 48, 48);
+        font-size: 12px;
+        padding: 4px;
+      }
+      &--name {
+        font-size: 10px;
+        padding: 0 4px;
+        margin: 8px 0 3px 0;
+        text-align: center;
+        word-break: break-all;
+      }
+      &--size {
+        font-size: 8px;
+      }
+    }
+  }
+} 

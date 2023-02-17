@@ -1,0 +1,18 @@
+.createPage {
+  width: min(100%, 800px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 50px;
+  &__heading {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+  &__btn {
+    margin-top: 25px;
+  }
+  &__tagWrapper {
+    padding: 0 12px;
+    margin-bottom: 24px;
+  }
+  
+}

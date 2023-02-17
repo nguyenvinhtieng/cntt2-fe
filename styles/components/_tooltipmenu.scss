@@ -1,0 +1,46 @@
+.tooltip-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: $darkColor;
+  border: 1px solid $borderColor;
+  padding: 6px 0;
+  border-radius: 8px;
+  opacity: 0;
+  transition: all 0.1s linear;
+  pointer-events: none;
+  z-index: 4;
+  list-style: none;
+  &.is-show {
+    opacity: 1;
+    pointer-events: inherit;
+  }
+
+  &__item {
+    padding: 6px 16px;
+    cursor: pointer;
+    &:hover {
+      background-color: $grayColor;
+    }
+
+    .tooltip-menu__item--wrapper,
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    &--ico {
+      width: 14px;
+      height: 14px;
+    }
+
+    &--ttl {
+      flex: 1;
+      padding-left: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+  }
+}

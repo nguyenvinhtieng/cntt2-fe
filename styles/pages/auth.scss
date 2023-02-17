@@ -1,0 +1,23 @@
+.auth-page {
+  width: min(100%, 600px);
+  margin: 0 auto;
+  &__heading {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  &__note {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 12px;
+    a {
+      margin-left: 6px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

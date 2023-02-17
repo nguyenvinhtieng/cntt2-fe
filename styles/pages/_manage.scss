@@ -1,0 +1,50 @@
+.managePage {
+    padding-bottom: 50px;
+    &__heading {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+    &__content {
+        margin-top: 4px;
+    }
+    &__num {
+        font-size: 10px;
+        text-align: right;
+    }
+    &__filter {
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border: 1px solid $borderColor;
+        border-radius: 6px;
+        overflow: hidden;
+        max-height: 0;
+        transition: all 0.2s linear;
+        opacity: 0;
+        padding: 16px;
+        max-width: 600px;
+        &.is-show {
+            opacity: 1;
+            max-height: 1000px;
+            overflow: unset;
+        }
+    }
+    &__pagination {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 16px;
+        .prevPage, .nextPage {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+                background-color: $borderColor;
+            }
+        }
+    }
+}

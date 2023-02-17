@@ -1,0 +1,76 @@
+.user-item {
+  display: inline-block ;
+  position: relative;
+  > a {
+    padding: 0 !important;
+    text-decoration: none !important;
+    &:after {
+      display: none;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__info {
+    // flex: 1;
+    margin-left: 6px;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  &__name {
+    display: block;
+    white-space: nowrap;
+    .tagvip {
+      background-color: rgba(255, 255, 0, 0.1);
+      font-size: 11px;
+      padding: 4px 6px;
+      color: rgb(6, 227, 6);
+      font-weight: bold;
+      margin-left: 6px;
+      border-radius: 4px;
+    }
+  }
+  &__time {
+    font-size: 11px;
+    color: #a8b3cf;
+  }
+  &__popup {
+    width: 250px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    background-color: $darkColor;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid $borderColor;
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s linear;
+    &.is-show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .time {
+      margin-top: 6px;
+      display: block;
+    }
+    > a {
+      padding: 0 !important;
+      text-decoration: none;
+      &:hover {
+        background-color: $darkColor !important;
+      }
+      &:after {
+        display: none;
+      }
+    }
+    .interes {
+      margin-top: 6px;
+      margin-bottom: 3px;
+    }
+  }
+}

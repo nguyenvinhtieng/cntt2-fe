@@ -1,0 +1,64 @@
+.social {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+    margin-top: 10px;
+    list-style: none;
+    &__item {
+        margin: 0 5px;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        transition: all 0.2s linear;
+        cursor: pointer;
+        position: relative;
+        &:hover {
+            background-color: $grayColor;
+        }
+        a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &--del {
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            font-size: 14px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: tomato;
+            border-radius: 4px;
+        }
+    }
+    &__add {
+        margin: 0 5px;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        &--btn {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            transition: all 0.2s linear;
+            cursor: pointer;
+            border: 1px dashed $borderColor;
+            &:hover {
+                background-color: $grayColor;
+            }
+        }
+    }
+}

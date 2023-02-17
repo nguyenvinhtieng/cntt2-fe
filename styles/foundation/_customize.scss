@@ -1,0 +1,122 @@
+// react-tooltip
+.tooltipOverrideCss {
+    color: red;
+    font-size: 10px !important;
+    font-weight: bold;
+    &:after {
+        width: 8px !important;
+        height: 8px !important;
+        bottom: -4px !important;
+    }
+    &:before {
+        display: none !important;
+    }
+}
+
+// ck editer
+.tox-tinymce {
+    border: none !important;
+    border-radius: 6px !important;
+}
+.tox:not(.tox-tinymce-inline) .tox-editor-header {
+    // padding: 0 !important;
+}
+.tox .tox-edit-area__iframe {
+    // background-color: $grayColor !important;
+}
+// TOAST
+.Toastify__toast {
+    min-height: 0px !important;
+}
+.Toastify__toast-body {
+    padding: 0 6px 0 0 !important;
+    font-size: 12px;
+    margin: 6px 0 !important;
+}
+.Toastify__toast-icon {
+    width: 14px !important;
+}
+.Toastify__progress-bar {
+    height: 3px !important;
+}
+
+// react-select
+.reactSelect {
+    // background-color: red;
+    .css-13cymwt-control {
+        background-color: $borderColor;
+        border-color: transparent;
+        &:hover {
+            border-color: transparent;
+            cursor: pointer;
+        }
+    }
+    // background-color: red;
+    .css-t3ipsp-control {
+        background-color: $borderColor;
+    }
+    .css-1dimb5e-singleValue {
+        color: #fff;
+        font-size: 12px;
+    }
+}
+
+.end-message {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 50px 0;
+    font-size: 14px;
+}
+.infinite-scroll-component {
+    // background-color: red !important;
+    // hidden scrollbar
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari, Opera*/
+    }
+    
+}
+
+/// PAGINATION
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 50px 0;
+    list-style: none;
+    gap: 2px;
+
+    li {
+        width: 30px;
+        height: 30px;
+        border: 1px solid $borderColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        transition: all 0.2s linear;
+        cursor: pointer;
+        font-size: 12px;
+        border-radius: 2px;
+        &:hover {
+            background-color: rgb(101, 184, 252);
+        }
+        &.selected {
+            background-color: rgb(101, 184, 252);
+        }
+        &:first-child {
+            width: fit-content;
+            white-space: nowrap;
+            padding: 4px 8px;
+        }
+        &:last-child {
+            width: fit-content;
+            white-space: nowrap;
+            padding: 4px 8px;
+        }
+    }
+}

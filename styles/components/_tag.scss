@@ -1,0 +1,52 @@
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -6px;
+  list-style: none;
+}
+.tag-item {
+  font-size: 12px;
+  background-color: $grayColor;
+  padding: 6px 16px;
+  border-radius: 6px;
+  margin: 0px 12px 6px 0px;
+  cursor: default;
+  position: relative;
+  &:hover {
+    .tag-item__delete {
+      display: flex;
+    }
+  }
+  &__delete {
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    font-size: 10px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    @include tablet {
+      display: flex;
+    }
+  }
+  &__add {
+    font-size: 16px;
+    // background-color: $grayColor;
+    padding: 6px 16px;
+    border-radius: 6px;
+    margin: 0px 12px 6px 0px;
+    cursor: pointer;
+    position: relative;
+    border: 1px dashed $borderColor;
+    transition: all 0.2s linear;
+    &:hover {
+      background-color: $grayColor;
+    }
+  }
+}

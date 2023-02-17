@@ -1,7 +1,7 @@
 import React from "react";
 import Overlay from "~/components/Overlay/Overlay";
 import Header from "~/layouts/components/Header/Header";
-import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebar from "~/layout/components/Sidebar/Sidebar";
 export default function DefaultLayout({ children }) {
   const [isShowSidebar, setIsShowSidebar] = React.useState(false);
   const toggleSidebar = () => setIsShowSidebar(!isShowSidebar);

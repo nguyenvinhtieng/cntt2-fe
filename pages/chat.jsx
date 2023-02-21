@@ -95,11 +95,6 @@ export default function chat() {
 
 
   const handleReceiveNewMessage = ({chat, thread}) => {
-    console.log("thread now: ", chatThreadNowsRef.current)
-    console.log("thread send: ", thread)
-    console.log("list threads: ", chatThreadsRef.current)
-    console.log("userChatNowRef: ", userChatNowRef.current)
-
     if(chatThreadNowsRef.current?._id == thread._id || userChatNowRef.current._id == chat.sender._id) {
       setChatContent(prevChatConent => [chat, ...prevChatConent])
       scrollToBottom()
@@ -122,6 +117,7 @@ export default function chat() {
   useEffect(()=> {
     if(Object.keys(socket).length > 0) {
       socket.on("new-message", ({chat, thread}) => {
+        console.log("new-message: ", chat)
         handleReceiveNewMessage({chat, thread})
       })
     }

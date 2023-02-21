@@ -1,11 +1,12 @@
 import moment from "moment";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BiTrashAlt } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "~/components/Modal/Modal";
 import Skeleton from "~/components/Skeleton/Skeleton";
 import { deleteQuestion } from "~/redux/actions/questionAction";
@@ -18,11 +19,13 @@ export default function MyPost() {
   const toggleDeleteModal = () => setIsShowDeleteModal(!isShowDeleteModal);
   const dispatch = useDispatch();
   const questionSelectedId = React.useRef(null);
+  const q = useSelector(state => state.questions);
+  const auth = useSelector((state) => state.auth);
+  const router = useRouter();
   const handleDelete = () => {
     let question_id = questionSelectedId.current;
     dispatch(deleteQuestion({question_id}))
     toggleDeleteModal();
-    fetchMyQuestion();
   }
   const confirmDelete = (post_id) => {
     questionSelectedId.current = post_id;
@@ -41,8 +44,12 @@ export default function MyPost() {
   }
   useEffect(()=> {
     fetchMyQuestion();
-  }, [])
-
+  }, [q.data])
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
 return (
     <div className="managePage">
       <Head>

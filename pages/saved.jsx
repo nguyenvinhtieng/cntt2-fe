@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import PostItem from '~/components/PostItem/PostItem';
@@ -9,12 +10,12 @@ export default function SavedPage() {
   const [bookmarks, setBookmarks] = React.useState([])
   const [loaded, setLoaded] = React.useState(false)
   const auth = useSelector((state) => state.auth);
+  const router = useRouter();
   const fetchBookmarks = () => {
     getMethod("bookmark/my-bookmarks")
       .then((res) => {
         const { data } = res;
         if(data.status){
-          console.log("data: ", data)
           setBookmarks(data.bookmarks);
         }
         setLoaded(true);
@@ -25,9 +26,11 @@ export default function SavedPage() {
     fetchBookmarks();
   }, [auth])
   
-  useEffect(()=> {
-    console.log("bookmarks: ", bookmarks)
-  }, [bookmarks])
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
 
   return (
     <>

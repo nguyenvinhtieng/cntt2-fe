@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Editor from '~/components/Editer/Editer';
 import InputMultiFile from '~/components/InputMultiFile/InputMultiFile';
 import { createQuestion } from '~/redux/actions/questionAction';
@@ -17,7 +17,7 @@ function CreateQuestionPage() {
     files: []
   });
   const dispatch = useDispatch();
-
+  const auth = useSelector((state) => state.auth);
   const handlePressTag = (e) => {
     if (e.key === "Enter") {
       let value = e.target.value;
@@ -78,6 +78,11 @@ function CreateQuestionPage() {
     questionData.tags.forEach(item => formData.append("tags", item));
     dispatch(createQuestion(formData, router));
   }
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
   return (
     <div className="createPage">
       <Head>

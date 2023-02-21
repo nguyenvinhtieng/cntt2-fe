@@ -7,6 +7,17 @@ export const startFilterPost = ({content, tag}) => {
             const state = getState();
             
             if(tag) {
+                if(tag == "all") {
+                    dispatch({
+                        type: GLOBAL_TYPES.POST,
+                        payload: {
+                            ...state.posts,
+                            data: state.posts.data,
+                            dataTemp: state.posts.data,
+                        }
+                    });
+                    return;
+                }
                 let dataPostsTemp = state?.posts?.data || [];
                 let dataPostsTempFilter = dataPostsTemp.filter((item) => item.tags.includes(tag));
                 dispatch({
@@ -144,7 +155,8 @@ export const updatePost = (formData) => {
                     type: GLOBAL_TYPES.POST,
                     payload: {
                         ...state.posts,
-                        data: postNew
+                        data: postNew,
+                        dataTemp: postNew,
                     }
                 })
                 
@@ -351,7 +363,8 @@ export const deletePost = ({post_id}) => {
                     type: GLOBAL_TYPES.POST,
                     payload: {
                         ...state.posts,
-                        data: newData
+                        data: newData,
+                        dataTemp: newData
                     }
                 })
                 displayToast("success", data.message);

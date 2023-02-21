@@ -19,6 +19,7 @@ function Home() {
   const [ tags, setTags] = useState([]);
   const searchContentRef = useRef(null);
   const posts = useSelector((state) => state.posts);
+  
   useEffect(() => {
     let isDisplayGridLocalstorage = localStorage.getItem("displayType");
     if (isDisplayGridLocalstorage && isDisplayGridLocalstorage === "false") {
@@ -32,7 +33,7 @@ function Home() {
     setIsGrid(newStatus);
     localStorage.setItem("displayType", newStatus);
   };
-  let itemsPerPage = 10;
+  let itemsPerPage = 9;
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = posts?.dataTemp?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(posts?.dataTemp?.length / itemsPerPage) || 0;
@@ -52,6 +53,8 @@ function Home() {
     tagsTemp = Object.entries(tagsTemp).sort((a, b) => b[1] - a[1]);
     // get top 10 tags
     tagsTemp = tagsTemp.slice(0, 10);
+    // add all
+    tagsTemp = [["Tất cả", 0], ...tagsTemp]
     setTags(tagsTemp);
   }, [posts]);
   const handlePageClick = (event) => {
@@ -65,6 +68,7 @@ function Home() {
     dispatch(startFilterPost({content}));
   }
   const searchTag = (tag) => {
+    if(tag == "Tất cả") tag = "all";
     dispatch(startFilterPost({tag: tag}));
   }
   return (
@@ -96,7 +100,8 @@ function Home() {
       
     <div className={`post__list ${!isGrid && "list"}`}>
       {currentItems?.length > 0 &&  currentItems?.map(item => <PostItem key={item._id} post={item}></PostItem>)}
-      {posts?.data.length === 0 && <p className="end-message">Không có bài viết nào</p>}
+      {posts?.data.length === 0 && <>
+        <PostItemSkeleton /><PostItemSkeleton /><PostItemSkeleton /> <PostItemSkeleton /><PostItemSkeleton /><PostItemSkeleton /> </>}
     </div>
     {currentItems?.length > 0 && 
         <ReactPaginate

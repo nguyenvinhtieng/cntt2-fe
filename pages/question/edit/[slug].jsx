@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Editor from '~/components/Editer/Editer';
 import InputMultiFile from '~/components/InputMultiFile/InputMultiFile';
 import { updateQuestion } from '~/redux/actions/questionAction';
@@ -12,6 +12,7 @@ function EditQuestionPage() {
   const tagRef = useRef();
   const router = useRouter();
   const { slug } = router.query;
+  const auth = useSelector((state) => state.auth);
   const [questionData, setQuestionData] = useState({
     title: "",
     content: "",
@@ -100,7 +101,11 @@ function EditQuestionPage() {
   useEffect(()=> {
     fetchQuestion()
   }, [slug])
-
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
   return (
     <div className="createPage">
       {/* <Head>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 // import Select from 'react-select';
 import { useRouter } from 'next/router';
 import { FaTimes } from 'react-icons/fa';
@@ -17,6 +17,7 @@ function CreatePostPage({ createPost }) {
   const [editorLoaded, setEditorLoaded] = useState(false);
   const tagRef = useRef();
   const router = useRouter();
+  const auth = useSelector((state) => state.auth);
   const [postData, setPostData] = useState({
     title: "",
     tldr: "",
@@ -105,6 +106,11 @@ function CreatePostPage({ createPost }) {
     createPost(formData);
     router.push("/posts")
   }
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
   return (
     <div className="createPage">
       <Head>

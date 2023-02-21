@@ -12,6 +12,8 @@ import { BsFillUnlockFill } from "react-icons/bs";
 import Select from "~/components/Select/Select";
 import UserItem from "~/components/UserItem/UserItem";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function ManageReport() {
     const [ isShowFilter, setIsShowFilter ] = React.useState(false);
@@ -23,6 +25,8 @@ export default function ManageReport() {
     const [totalPage, setTotalPage] = React.useState(1);
     const reportIdSelectedRed = React.useRef();
     const [isShowModalDelete, setIsShowModalDelete] = React.useState(false);
+    const router = useRouter();
+    const auth = useSelector(state => state.auth);
     const toggleModalDelete = () => setIsShowModalDelete(!isShowModalDelete);
 
     const fetchReports = () => {
@@ -41,8 +45,18 @@ export default function ManageReport() {
             .catch(err => console.log(err))
     }
     
-    const deleteReport = () => {
-
+    const deleteReport = async () => {
+      postMethod("report/delete", {report_id: reportIdSelectedRed.current})
+        .then(res => {
+          const {data} = res;
+          if(data.status) {
+            displayToast("success", "Xóa báo cáo thành công")
+            fetchReports();
+          }
+          toggleModalDelete();
+        }
+        )
+        .catch(err => console.log(err))
     }
     const showModalConfirmDelete =(report_id) => {
       reportIdSelectedRed.current = report_id;
@@ -51,6 +65,11 @@ export default function ManageReport() {
     useEffect(()=> {
       fetchReports()
     }, [])
+    useEffect(()=> {
+      if(auth?.user?.role !== "admin") {
+          router.push("/")
+      }
+  }, [auth.user])
 
 return (
     <div className="managePage">

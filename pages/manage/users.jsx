@@ -11,6 +11,8 @@ import displayToast from "~/utils/displayToast";
 import { BsFillUnlockFill } from "react-icons/bs";
 import Select from "~/components/Select/Select";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function ManageUserPage() {
     const [ isShowFilter, setIsShowFilter ] = React.useState(false);
@@ -29,7 +31,8 @@ export default function ManageUserPage() {
     const nameRef = React.useRef(null);
     const emailRef = React.useRef(null);
     const statusRef = React.useRef(null);
-
+    const router = useRouter();
+    const auth = useSelector(state => state.auth);
     const fetchUsers = () => {
         getMethod("manage/users")
             .then(res => {
@@ -148,7 +151,6 @@ export default function ManageUserPage() {
         let name = nameRef.current.value;
         let email = emailRef.current.value;
         let status = statusRef.current;
-        console.log("status: ", status)
         let newUser = [...usersFetch]
         if(name) {
             newUser = newUser.filter(user => user.fullname.toLowerCase().includes(name.toLowerCase()))
@@ -176,6 +178,11 @@ export default function ManageUserPage() {
     useEffect(()=> {
         fetchUsers()
     }, [])
+    useEffect(()=> {
+        if(auth?.user?.role !== "admin") {
+            router.push("/")
+        }
+    }, [auth.user])
 
 return (
     <div className="managePage">

@@ -165,9 +165,9 @@ export default function ChatContent({userChatNow,scrollToBottom, messageEndRef, 
                       <div className="chat__contentMessItem--contentFile">
                         {chat?.files.map((file, index) => {
                           if(file.type == "image") {
-                            return <ZoomImage key={file.url}>
+                            return <a href={file.url} key={file.url} target="_blank">
                               <img src={file.url} alt="" />
-                            </ZoomImage>
+                            </a>
                           }else {
                             return <a key={file.url} href={file.url} target="_blank" rel="noreferrer">{ file.file_name }</a>
                           }

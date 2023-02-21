@@ -11,6 +11,8 @@ import Skeleton from "~/components/Skeleton/Skeleton";
 import UserItem from "~/components/UserItem/UserItem";
 import { postMethod } from "~/utils/fetchData";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function ManagePost() {
     const [questions, setQuestions] = React.useState([]);
@@ -24,9 +26,11 @@ export default function ManagePost() {
     const fromDateRef = React.useRef(null);
     const toDateRef = React.useRef(null);
     const tagRef = React.useRef(null);
-
     const statusRef = React.useRef(null);
     const [ isShowFilter, setIsShowFilter ] = React.useState(false);
+    const router = useRouter();
+    const auth = useSelector(state => state.auth);
+
     const toggleFilter = () => setIsShowFilter(!isShowFilter);
     const toggleModalConfirmDelete = () => setIsShowModalConfirmDelete(!isShowModalConfirmDelete);
 
@@ -100,7 +104,11 @@ export default function ManagePost() {
     useEffect(()=>{
         fetchDataQuestion({});
     }, [])
-    console.log("questions: ", questions)
+    useEffect(()=> {
+        if(auth?.user?.role !== "admin") {
+            router.push("/")
+        }
+    }, [auth.user])
 return (
     <div className="managePage">
         <Head>

@@ -103,6 +103,11 @@
         font-size: 16px;
         border-radius: 100px;
         font-family: "Popins", sans-serif;
+        @include sp {
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+        }
         &:hover {
             background-color: rgb(101, 184, 252);
         }
@@ -113,11 +118,19 @@
             width: fit-content;
             white-space: nowrap;
             padding: 4px 24px;
+            @include sp {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
         }
         &:last-child {
             width: fit-content;
             white-space: nowrap;
             padding: 4px 24px;
+            @include sp {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
         }
     }
 }

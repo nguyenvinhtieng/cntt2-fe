@@ -1,11 +1,12 @@
 import moment from "moment";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BiTrashAlt } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "~/components/Modal/Modal";
 import Skeleton from "~/components/Skeleton/Skeleton";
 import { deletePost } from "~/redux/actions/postActions";
@@ -16,6 +17,9 @@ export default function MyPost() {
   const [posts, setPosts] = React.useState([]);
   const postSelectedId = React.useRef(null);
   const [isShowDeleteModal, setIsShowDeleteModal] = React.useState(false);
+  const p = useSelector(state => state.posts);
+  const auth = useSelector((state) => state.auth);
+  const router = useRouter();
   const toggleDeleteModal = () => setIsShowDeleteModal(!isShowDeleteModal);
   const dispatch = useDispatch();
   const handleDeletePost = () => {
@@ -23,7 +27,7 @@ export default function MyPost() {
     if(!post_id) return;
     dispatch(deletePost({post_id}))
     toggleDeleteModal();
-    fetchDataPost();
+    // fetchDataPost();
   }
   const confirmDelete = (post_id) => {
     postSelectedId.current = post_id;
@@ -45,7 +49,12 @@ export default function MyPost() {
   }
   useEffect(()=> {
     fetchDataPost();
-  }, [])
+  }, [p.data])
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
 return (
     <div className="managePage">
       <Head>

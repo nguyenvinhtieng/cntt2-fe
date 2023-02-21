@@ -137,7 +137,11 @@ function UpdatePost() {
     dispatch(updatePost(formData));
     router.push("/posts")
   }
-
+  useEffect(() => {
+    if(!auth.user) {
+      router.push("/")
+    }
+  }, [auth])
   return (
     <div className="createPage">
       <h1 className='createPage__heading'>Sửa bài viết</h1>

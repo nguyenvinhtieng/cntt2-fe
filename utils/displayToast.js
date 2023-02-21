@@ -12,6 +12,7 @@ function displayToast(type = "success", message) {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        limit: 1
     });
 }
 

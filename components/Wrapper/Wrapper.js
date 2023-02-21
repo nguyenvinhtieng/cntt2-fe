@@ -21,7 +21,7 @@ function Wrapper({children, socket}) {
                 dispatch(startSocket(socket))
                 socket.emit("user-login", auth.user)
                 socket.on("new-message", ({chat, thread}) => {
-                    if(router.pathname != "/chat") {
+                    if(router.pathname.startsWith("/chat")) { // check pathname start with /chat
                         let sender = chat.sender.fullname
                         displayToast("info", "Bạn có tin nhắn mới từ " + sender)
                     }

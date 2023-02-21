@@ -16,6 +16,7 @@ function Home() {
   const dispatch = useDispatch();
   const [isGrid, setIsGrid] = useState(true);
   const [itemOffset, setItemOffset] = useState(0);
+  const [ tags, setTags] = useState([]);
   const searchContentRef = useRef(null);
   const posts = useSelector((state) => state.posts);
   useEffect(() => {
@@ -35,6 +36,24 @@ function Home() {
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = posts?.dataTemp?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(posts?.dataTemp?.length / itemsPerPage) || 0;
+
+  
+  useEffect(() => {
+    let tagsTemp = {};
+    posts?.data?.forEach(post => {
+      post.tags.forEach(tag => {
+        if (tagsTemp[tag]) {
+          tagsTemp[tag] += 1;
+        } else {
+          tagsTemp[tag] = 1;
+        }
+      })
+    });
+    tagsTemp = Object.entries(tagsTemp).sort((a, b) => b[1] - a[1]);
+    // get top 10 tags
+    tagsTemp = tagsTemp.slice(0, 10);
+    setTags(tagsTemp);
+  }, [posts]);
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % posts?.dataTemp?.length;
     setItemOffset(newOffset);
@@ -45,7 +64,9 @@ function Home() {
     let content = searchContentRef.current.value;
     dispatch(startFilterPost({content}));
   }
-  
+  const searchTag = (tag) => {
+    dispatch(startFilterPost({tag: tag}));
+  }
   return (
     <>
     <Head>
@@ -60,6 +81,14 @@ function Home() {
             <button className="button" onClick={startFilter}>Tìm</button>
         </div>
     </div>
+    <div className="tags">
+      <div className="tags__inner">
+        <div className="tags__title">Từ khóa nổi bật</div>
+        <div className="tags__list">
+          {tags?.length > 0 && tags.map(tag => <div className="tag" onClick={()=>searchTag(tag[0])} key={tag[0]}>#{tag[0]}</div>)}
+        </div>
+      </div>
+    </div>
     <div className="switch">
       <div className={`switch__item ${!isGrid && "active"}`} onClick={()=>switchDisplayType()}><CiBoxList/></div>
       <div className={`switch__item ${isGrid && "active"}`} onClick={()=>switchDisplayType()}><BsGrid/></div>
@@ -72,11 +101,11 @@ function Home() {
     {currentItems?.length > 0 && 
         <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel="Next"
         onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel="Previous"
         renderOnZeroPageCount={null}
         className="pagination"
       />}

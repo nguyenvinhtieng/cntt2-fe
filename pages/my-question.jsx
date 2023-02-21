@@ -53,7 +53,7 @@ return (
       <p>Bạn có chắc chắn muốn xóa câu hỏi này?</p>
     </Modal>
     <div className="managePage__content">
-        <div className="table__wrapper">
+        <div className="table__wrapper scroll-css">
             <table className="table">
               <thead>
                 <tr>

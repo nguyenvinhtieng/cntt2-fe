@@ -2,6 +2,7 @@ import moment from 'moment';
 import { FacebookShareButton } from 'next-share';
 import Link from "next/link";
 import React, { useRef } from "react";
+import { useId } from 'react';
 import { BiDotsVerticalRounded, BiDownvote, BiUpvote } from "react-icons/bi";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FiFacebook, FiShare2 } from "react-icons/fi";
@@ -71,11 +72,11 @@ export default function PostItem({post}) {
     },
   ];
   const reasons = [
-    {id: 1,title: "Nội dung không phù hợp"},
-    {id: 2,title: "Nội dung không đúng với chủ đề"},
-    {id: 3,title: "Từ ngữ không phù hợp"},
-    {id: 4,title: "Spam"},
-    {id: 5,title: "Khác"},
+    {id: useId(), title: "Nội dung không phù hợp"},
+    {id: useId(), title: "Nội dung không đúng với chủ đề"},
+    {id: useId(), title: "Từ ngữ không phù hợp"},
+    {id: useId(), title: "Spam"},
+    {id: useId(), title: "Khác"},
   ]
   const copyLink = () => {
     navigator.clipboard.writeText(`${window.location.origin}/post/${post?.slug}`);

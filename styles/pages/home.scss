@@ -50,3 +50,33 @@
     }
   }
 }
+
+.tags {
+  &__inner {
+
+  }
+  &__title {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .tag {
+    padding: 4px 24px;
+    background-color: $grayColor;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s linear;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}

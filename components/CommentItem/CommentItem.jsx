@@ -12,7 +12,7 @@ import { postMethod } from '~/utils/fetchData'
 import Modal from '../Modal/Modal'
 import TooltipMenu from '../TooltipMenu/TooltipMenu'
 import UserItem from '../UserItem/UserItem'
-  
+import { useId } from 'react'
 
 function CommentItem({comment, reply_for}) {
   const auth = useSelector((state) => state.auth);
@@ -33,7 +33,6 @@ function CommentItem({comment, reply_for}) {
   const toggleModalComment = () => setIsShowModalComment(!isShowModalComment);
   const toggleModalDeleteComment = () => setIsShowModalDelete(!isShowModalDelete)
   const toggleModalReport = () => setIsShowModalReport(!isShowModalReport)
-  
   const [reason, setReason] = React.useState("")
 
   const replyComment = () => {
@@ -98,11 +97,11 @@ function CommentItem({comment, reply_for}) {
     inputReply.current.focus();
   }
   const reasons = [
-    {id: 1,title: "Nội dung không phù hợp"},
-    {id: 2,title: "Nội dung không đúng với chủ đề"},
-    {id: 3,title: "Từ ngữ không phù hợp"},
-    {id: 4,title: "Spam"},
-    {id: 5,title: "Khác"},
+    {id: useId(),title: "Nội dung không phù hợp"},
+    {id: useId(),title: "Nội dung không đúng với chủ đề"},
+    {id: useId(),title: "Từ ngữ không phù hợp"},
+    {id: useId(),title: "Spam"},
+    {id: useId(),title: "Khác"},
   ]
   
   useEffect(()=> {

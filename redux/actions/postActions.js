@@ -1,14 +1,29 @@
 import displayToast from "~/utils/displayToast";
 import { getMethod, postMethod } from "~/utils/fetchData";
 import { GLOBAL_TYPES } from "../constants";
-export const startFilterPost = ({content}) => {
+export const startFilterPost = ({content, tag}) => {
     return async (dispatch, getState) => {
         try {
             const state = getState();
+            
+            if(tag) {
+                let dataPostsTemp = state?.posts?.data || [];
+                let dataPostsTempFilter = dataPostsTemp.filter((item) => item.tags.includes(tag));
+                dispatch({
+                    type: GLOBAL_TYPES.POST,
+                    payload: {
+                        ...state.posts,
+                        dataTemp: dataPostsTempFilter,
+                    }
+                });
+                return;
+            }
+
             if(content) {
+                content = content.toLowerCase();
                 let dataPostsTemp = state?.posts?.data || [];
                 let dataPostsTempFilter = dataPostsTemp.filter((item) => 
-                    item.content.includes(content) || item.title.includes(content) || item.tags.includes(content) || item.author.fullname.includes(content)
+                    item.content.toLowerCase().includes(content) || item.title.toLowerCase().includes(content) || item.tags.includes(content) || item.author.fullname.toLowerCase().includes(content)
                 );
                 dispatch({
                     type: GLOBAL_TYPES.POST,
@@ -21,7 +36,8 @@ export const startFilterPost = ({content}) => {
                     type: GLOBAL_TYPES.POST,
                     payload: {
                         ...state.posts,
-                        data: state.posts.dataTemp,
+                        data: state.posts.data,
+                        dataTemp: state.posts.data,
                         total: state.posts.totalTemp,
                     }});
             }

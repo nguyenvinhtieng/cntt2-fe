@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.1.6",
     "@tinymce/tinymce-react": "^4.2.0",
     "axios": "^1.2.0",
     "html-to-react": "^1.5.0",

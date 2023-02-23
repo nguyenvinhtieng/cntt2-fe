@@ -171,7 +171,7 @@ function UpdatePost() {
         </div>
         <div className="input__wrapper">
           <label className='input__label' htmlFor="">Ảnh bìa cho bài viết (Nếu k chọn ảnh bìa thì sẽ lấy ảnh mặc định cho bài viết)</label>
-          <InputImage onChangeImage={onChangeImage} images={postData.thumbnail} name="image"></InputImage>
+          <InputImage onChangeImage={onChangeImage} images={postData?.thumbnail} name="image"></InputImage>
         </div>
         <div className="input__wrapper">
           <label className='input__label' htmlFor="">Chế độ lưu</label>

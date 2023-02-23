@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { BiDotsVerticalRounded, BiDownvote, BiUpvote } from 'react-icons/bi'
+import Prism from "prismjs";
 import { BsBookmarkXFill, BsFillBookmarkStarFill, BsReplyAll } from 'react-icons/bs'
 import { FaTimes } from 'react-icons/fa'
 import { FiEdit2 } from 'react-icons/fi'
@@ -51,7 +52,9 @@ export default function AnswerItem({answer, reply_id, author_question_id}) {
         setReplyContent('')
     }
     useOnClickOutside(menuRef, ()=> setIsShowMenu(false))
-
+    useEffect(() => {
+        Prism.highlightAll();
+      });
     useEffect(()=> {
         let menuNew = []
         if(auth?.user?._id == answer.author._id || auth?.user?.role == "admin") {
@@ -211,7 +214,7 @@ export default function AnswerItem({answer, reply_id, author_question_id}) {
             {answer?.status == "rejected" && <span className='answer__reject' data-tip="Câu trả lời bị từ chối"><BsBookmarkXFill></BsBookmarkXFill></span>}
             {/* Insert danger HTML */}
             <ZoomImage>
-                <div className="answer__content" dangerouslySetInnerHTML={{__html: answer?.content}}></div>
+                <div className="answer__content mce-content-body" dangerouslySetInnerHTML={{__html: answer?.content}}></div>
             </ZoomImage>
         </div>
         <div className="answer__actions">

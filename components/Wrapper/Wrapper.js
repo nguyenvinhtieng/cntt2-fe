@@ -6,6 +6,9 @@ import { fetchPostData } from "~/redux/actions/postActions";
 import { fetchQuestionData } from "~/redux/actions/questionAction";
 import { startSocket } from "~/redux/actions/socketAction";
 import displayToast from "~/utils/displayToast";
+function checkPath() {
+    
+}
 function Wrapper({children, socket}) {
     const auth = useSelector(state => state.auth);
     const dispatch = useDispatch();

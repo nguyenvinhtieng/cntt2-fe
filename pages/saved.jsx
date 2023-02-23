@@ -15,6 +15,7 @@ export default function SavedPage() {
     getMethod("bookmark/my-bookmarks")
       .then((res) => {
         const { data } = res;
+        console.log("data," , data)
         if(data.status){
           setBookmarks(data.bookmarks);
         }

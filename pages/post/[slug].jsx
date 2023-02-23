@@ -101,7 +101,7 @@ export default function PostDetail() {
   return (
     <div className="container">
       <Head>
-        <title>{post?.title || "Bài viết"}</title>
+        <title>{post?.title || "Bài viết hay"}</title>
       </Head>
       <Modal isShow={isShowModalAddComment} size="sm" title="Bình luận bài viết" handleCloseModal={toggleModalAddComment} handleSubmit={addComment}>
         <div className="input__wrapper">

@@ -2,6 +2,12 @@ import Image from 'next/image';
 import ImageUploading from 'react-images-uploading';
 
 function InputImage({ onChangeImage, images }) {
+  console.log("images:" , images)
+  if(images?.length > 0 ){
+    if(images[0].url == "") {
+      images = [];
+    }
+  }
   const maxNumber = 69;
   return (
     <>
@@ -25,7 +31,7 @@ function InputImage({ onChangeImage, images }) {
             {imageList.map((image, index) => (
               <div key={index} className="input-image__item">
                 <Image
-                  src={image['data_url'] || "/default.png"}
+                  src={image['data_url'] || image['url']|| "/default.png"}
                   alt="cover image"
                   width={200}
                   height={150} />

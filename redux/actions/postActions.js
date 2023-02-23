@@ -142,11 +142,15 @@ export const updatePost = (formData) => {
             });
             let res = await postMethod("post/update", formData);
             const { data } = res;
+            console.log(data)
             if (data.status) {
                 console.log(data)
                 let postNew = state.posts.data.map(item => {
                     if(item._id === data.post._id) {
-                        return data.post;
+                        return {
+                            ...data.post,
+                            comments: item.comments,
+                        }
                     }
                     return item;
                 })

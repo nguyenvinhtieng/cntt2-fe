@@ -3,7 +3,7 @@ import Overlay from "~/components/Overlay/Overlay";
 import Header from "~/layouts/components/Header/Header";
 import Sidebar from "~/layouts/components/SideBar/Sidebar";
 import { Montserrat } from '@next/font/google'
-const montserrat = Montserrat({subsets: ['latin']})
+const montserrat = Montserrat({subsets: ['vietnamese']})
 console.log(montserrat)
 
 export default function DefaultLayout({ children }) {

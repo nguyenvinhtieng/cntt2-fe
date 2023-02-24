@@ -6,8 +6,8 @@ import { fetchPostData } from "~/redux/actions/postActions";
 import { fetchQuestionData } from "~/redux/actions/questionAction";
 import { startSocket } from "~/redux/actions/socketAction";
 import displayToast from "~/utils/displayToast";
-function checkPath() {
-    
+function getPath() {
+    return window.location.pathname;
 }
 function Wrapper({children, socket}) {
     const auth = useSelector(state => state.auth);
@@ -26,9 +26,8 @@ function Wrapper({children, socket}) {
                 socket.emit("user-login", auth.user)
                 setFirstTimes(false)
                 socket.on("new-message", ({chat, thread}) => {
-                    console.log("router.pathname: ", router.pathname)
-                    console.log("---", window.location.pathname)
-                    if(!router.pathname.startsWith("/chat")) { // check pathname start with /chat
+                    let currentPath = getPath()
+                    if(!currentPath.startsWith("/chat")) {
                         let sender = chat.sender.fullname
                         displayToast("info", "Bạn có tin nhắn mới từ " + sender)
                     }

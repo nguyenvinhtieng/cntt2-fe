@@ -127,7 +127,7 @@ export default function PostItem({post}) {
           <div className="post-item__content">
             <p className="post-item__ttl">{post?.title}</p>
             <div className="post-item__info">
-              <time>{moment(post?.createdAt).locale("vi").startOf('hour').fromNow()}</time> <span> • </span>
+              <time>{moment(post?.createdAt).locale("en").startOf('hour').fromNow()}</time> <span> • </span>
               <span>{Math.floor(post?.content.length / 500) + 1} phút đọc</span>
             </div>
             <div className="post-item__img">

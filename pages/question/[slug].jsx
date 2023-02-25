@@ -63,6 +63,7 @@ export default function QuestionDetailPage() {
     }
 
   }, [slug, questions])
+  console.log("question; ", question)
   return (
     <div className='questionDetailPage'>
       <Head>

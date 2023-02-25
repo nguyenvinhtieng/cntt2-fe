@@ -42,25 +42,24 @@ export default function PostDetail() {
     if(!postState) {
       postState = posts.dataTemp.find((p) => p.slug == slug);
     }
-    console.log("postState", postState)
     if(postState){
-      console.log("update post")
       setPost(postState);
       setIsLoaded(true);
     }else {
-      console.log("update 2")
       if(slug && !post){
         getMethod("post/" + slug).then((res) => {
           const { data } = res;
           if(data.status){
             setPost(data.post);
-            console.log("data.post", data.post)
             // dispatch(addPostToStore(data.post))
             setIsLoaded(true);
           }else {
             router.push("/");
           }
-        });
+        }).catch((err) => {
+          console.log(err);
+          router.push("/");
+        })
       }
     }
   },[posts, slug])

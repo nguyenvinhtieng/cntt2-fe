@@ -33,7 +33,6 @@ export default function ManageReport() {
         getMethod("manage/reports")
             .then(res => {
                 const {data} = res;
-                console.log("res: ", res)
                 if(data.status) {
                   setReportsFetch(data.reports)
                   setReportsFilter(data.reports)

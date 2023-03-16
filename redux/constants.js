@@ -10,5 +10,5 @@ export const GLOBAL_TYPES = {
 export const CREDENTIALS = {
     TOKEN_NAME: 'token',
     // BACKEND_URL: 'http://localhost:3002/api',
-    BACKEND_URL: 'https://cntt2-be.herokuapp.com/api',
+    BACKEND_URL: 'https://tech-forum.onrender.com/api',
 }

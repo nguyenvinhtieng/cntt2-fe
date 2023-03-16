@@ -17,7 +17,9 @@ import DataProvider from "~/redux/store";
 import Wrapper from "~/components/Wrapper/Wrapper";
 import Loading from "~/components/Loading/Loading";
 import { CREDENTIALS } from "~/redux/constants";
-const socket = socketIO.connect(CREDENTIALS.BACKEND_URL);
+const url = new URL(CREDENTIALS.BACKEND_URL);
+const result = `${url.protocol}//${url.hostname}`;
+const socket = socketIO.connect(result);
 
 function MyApp({ Component, pageProps }) {
   const [mouted, setMounted] = useState(false);

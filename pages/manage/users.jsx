@@ -37,12 +37,14 @@ export default function ManageUserPage() {
         getMethod("manage/users")
             .then(res => {
                 const {data} = res;
-                console.log("res: ", res)
+                // console.log("res: ", res)
                 if(data.status) {
-                    setUsersFetch(data.users)
-                    setUsersFilter(data.users)
-                    setUsersShow(data.users.slice(0, 10))
-                    setTotalPage(Math.ceil(data.users.length / 10))
+                    console.log("data: ", data)
+                    let userList = data.users.filter(u => u.role != "admin");
+                    setUsersFetch(userList)
+                    setUsersFilter(userList)
+                    setUsersShow(userList.slice(0, 10))
+                    setTotalPage(Math.ceil(userList.length / 10))
                     setCurrentPage(1)
                 }
             })

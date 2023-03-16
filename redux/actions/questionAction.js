@@ -174,7 +174,8 @@ export const editAnswer = ({question_id, answer_id, content}) => {
                     type: GLOBAL_TYPES.QUESTION,
                     payload: {
                         ...state.questions,
-                        data: newQuestion
+                        data: newQuestion,
+                        dataTemp: newQuestion
                     }
                 })
             }
@@ -187,13 +188,16 @@ export const editAnswer = ({question_id, answer_id, content}) => {
 export const deleteAnswer = ({question_id, answer_id}) => {
     return async (dispatch, getState) => {
         const state = getState();
+        // console.log("Question_id: ", question_id, "Answer_id: ", answer_id);
         try {
             const res = await postMethod(`answer/delete`, {answer_id});
             const { data } = res;
+            console.log("Data: ", data)
             if(data.status) {
                 displayToast("success", data.message);
                 let newQuestion = state.questions.data.map(question => {
                     if(question._id === question_id) {
+                        console.log("get question; ", question)
                         question.answers = question.answers.filter(answer => answer._id !== answer_id);
                         question.answers = question.answers.map(answer => {
                             if(answer.reply_id === answer_id) {
@@ -208,7 +212,8 @@ export const deleteAnswer = ({question_id, answer_id}) => {
                     type: GLOBAL_TYPES.QUESTION,
                     payload: {
                         ...state.questions,
-                        data: newQuestion
+                        data: newQuestion,
+                        dataTemp: newQuestion
                     }
                 })
             }

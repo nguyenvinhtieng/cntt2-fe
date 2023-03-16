@@ -16,8 +16,8 @@ import DefaultLayout from "~/layouts/DefaultLayout/DefaultLayout";
 import DataProvider from "~/redux/store";
 import Wrapper from "~/components/Wrapper/Wrapper";
 import Loading from "~/components/Loading/Loading";
-
-const socket = socketIO.connect('https://cntt2-be.herokuapp.com');
+import { CREDENTIALS } from "~/redux/constants";
+const socket = socketIO.connect(CREDENTIALS.BACKEND_URL);
 
 function MyApp({ Component, pageProps }) {
   const [mouted, setMounted] = useState(false);

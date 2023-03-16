@@ -4,9 +4,8 @@ import AnswerItem from '../AnswerItem/AnswerItem';
 export default function AnswerBlock({answers, author_question_id}) {
     const [answerThread, setAnswerThread] = React.useState([]);
     useEffect(()=> {
-        if(!answers || answers.length === 0) return;
+        if(!answers) return;
         let answersData = [...answers];
-
         let answersThreadData = [];
         let answerReply = [];
         answersData.forEach((answer) => {
